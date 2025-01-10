@@ -10,11 +10,11 @@ class FaqController extends Controller
 {
     public function index(Request $request){
         $query = $request->input('query', '');
-        $faqs = Faq::with(['category','tags'])
+        $faqs = Faq::with('category','tags')
         ->where('title','like','%$query%')
         ->orWhere('content', 'like', '%$query')
         ->paginate(10);
-
+        
         return view('faqs.index', compact('faqs', 'query'));
     }
 

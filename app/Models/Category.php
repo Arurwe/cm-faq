@@ -12,4 +12,9 @@ class Category extends Model
     public function faqs(){
         return $this->hasMany(Faq::class);
     }
+
+    public function faqsCount()
+    {
+        return $this->faqs()->count();
+    }
 }

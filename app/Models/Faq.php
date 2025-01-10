@@ -10,7 +10,7 @@ class Faq extends Model
     protected $fillable = ['title', 'content', 'category_id', 'views'];
 
     public function category(){
-        return $this->belongsToMany(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function tags(){
