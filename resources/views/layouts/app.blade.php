@@ -12,8 +12,8 @@
 <body class="bg-white text-gray-800">
 
     <!-- Nagłówek -->
-    <header class="bg-white shadow-md fixed top-0 w-full h-16">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <header class="bg-white shadow-md fixed top-0 w-full h-16 z-50">
+        <div class="container mx-auto px-4 py-2 flex justify-between items-center">
             <a href="{{ route('home') }}" class="text-xl font-bold text-blue-500">CM FAQ</a>
 
             <div >
@@ -26,17 +26,7 @@
                     <li><a href="{{ route('category.index') }}" class="text-gray-700 hover:text-blue-500">Kategorie</a></li>
                    <li><a href="{{ route('category.index') }}" class="text-gray-700 hover:text-blue-500">Zgłoszenie</a></li>
                 
-                    @auth
-                        <li><a href="{{ route('admin.dashboard') }}" class="text-gray-700 hover:text-blue-500">Panel Admina</a></li>
-                        <li>
-                            {{-- <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="text-gray-700 hover:text-red-500">Wyloguj</button>
-                            </form> --}}
-                        </li>
-                    @else
-                        <li><a href="{{ route('login') }}" class="text-gray-700 hover:text-blue-500">Zaloguj</a></li>
-                    @endauth
+                   
                 </ul>
             </nav>
         </div>
@@ -53,7 +43,7 @@
     <footer class="bg-gray-800 text-gray-300 py-4 mt-8">
         <div class="container mx-auto text-center">
             <p>&copy; {{ date('Y') }} CM FAQ. Wszystkie prawa zastrzeżone.</p>
-            <p>Kontakt: <a href="mailto:xxx@it.pl" class="text-blue-400 hover:underline">xxx@it.pl</a></p>
+            <p>Kontakt: <a href="mailto:ok@cm-uj.krakow.pl" class="text-blue-400 hover:underline">ok@cm-uj.krakow.pl </a></p>
         </div>
     </footer>
 

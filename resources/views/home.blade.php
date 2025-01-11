@@ -16,33 +16,20 @@
         
         <!-- Sekcja kategorii -->
         <div class="mt-8 " > 
-            <hr class="border-t w-3/4 border-gray-400 mx-auto">
-            <h2 class="text-3xl font-semibold text-center mt-2">Kategorie</h2>
-            <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach ($categories as $category)
-                    <li class="bg-white shadow-md rounded p-4 hover:bg-slate-100 group">
-                        <a href="{{ route('category.show', $category) }}" class="block text-center">
-                            <h3 class="text-xl font-semibold text-blue-500 group-hover:text-blue-800">{{ $category->name }}</h3>
-                            <p class="text-gray-600 mt-2">
-                                {{ $category->faqs_count ?? 0 }} pytań
-                            </p>
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-    </div>
+            <x-category-list :categories="$categories" />
+            
+         </div>
 
 
     <div class="mt-8 ">
         <hr class="border-t w-3/4 border-gray-400 mx-auto">
-        <h2 class="text-2xl font-semibold text-center mt-2">Najczęściej zadawane pytania</h2>
+        <h2 class="text-4xl font-semibold text-center mt-2">Najczęściej zadawane pytania</h2>
         <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($mostViewedFaqs as $faq)
                 <li class="bg-white shadow-md rounded p-4 mb-4 ml-4 hover:bg-slate-100 group ">
                     <a href="{{ route('faq.show', $faq->id) }}" class="block">
                         <h3 class="text-xl font-semibold text-blue-500 group-hover:text-blue-800 ">{{ $faq->title }}</h3>
-                        <p class="text-gray-500 mt-2">{{ $faq->content }}</p>
+                        <p class="text-gray-500 mt-2">{{ Str::limit($faq->content, 100) }}</p>
                         <p class="text-gray-300 mt-2">
                             Liczba wyświetleń: {{ $faq->views }}
                         </p>

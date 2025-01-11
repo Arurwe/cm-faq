@@ -13,13 +13,19 @@
         </div>
 
         <!-- Lista wyników -->
+        @if($query !== '')
+        <p class="mt-4 mb-4 text-lg text-gray-700 font-medium ">
+            Znalezione treści dla: <span class="text-blue-500 font-semibold">{{ $query }}</span>
+        </p>
+    @endif
+    
         <ul class="space-y-4">
             @forelse($faqs as $faq)
                 <li class="bg-white shadow-md rounded-lg p-4 hover:bg-gray-100 transition-all duration-300">
-                    <a href="{{ route('faqs.show', $faq) }}" class="underline text-xl font-semibold text-blue-600 hover:text-blue-800">
+                    <a href="{{ route('faq.show', $faq) }}" class="underline text-xl font-semibold text-blue-600 hover:text-blue-800">
                         {{ $faq->title }}
                     </a>
-                    <p class="text-gray-600 mt-2">{{ Str::limit($faq->content, 120) }}</p>
+                    <p class="text-gray-600 mt-2">{{ Str::limit($faq->content, 200) }}</p>
                 </li>
             @empty
                 <li class="bg-white shadow-md rounded-lg p-4">

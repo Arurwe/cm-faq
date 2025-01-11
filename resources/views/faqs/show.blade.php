@@ -14,7 +14,7 @@
 
         <!-- Informacje o kategorii -->
         <div class="flex items-center space-x-4 mb-4">
-            <p class="text-sm text-gray-600"><strong>Kategoria:</strong> {{ $faq->category->name }}</p>
+            <p class="text-sm text-gray-600"><strong>Kategoria:</strong><a class="hover:text-blue-500"href="{{ route('category.show',$faq->category) }}"> {{ $faq->category->name }}</a></p>
         </div>
 
         <!-- Tagi -->
@@ -28,6 +28,9 @@
         @else
             <p class="text-sm text-gray-600 mt-2">Brak tagów.</p>
         @endif
+
+        {{-- Wyświetlenia --}}
+        <p class="text-sm text-gray-600 mt-2">Ilość wyświetleń: {{ $faq->views }}</p>
     </div>
 @endsection
 

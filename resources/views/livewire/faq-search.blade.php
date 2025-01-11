@@ -31,16 +31,15 @@
 </div> --}}
 
 
-
-<div >
-    <form method="GET" action="{{ route('faq.index') }}" >
+<div class="flex justify-center items-center mt-1">
+    <form method="GET" action="{{ route('faq.index') }}" class="flex w-3/4 max-w-4xl">
         <!-- Pole wyszukiwania -->
         <input 
             name="query"
             type="text" 
             wire:model.live.debounce.500ms="query" 
             placeholder="Szukaj w FAQ..." 
-            class="  border border-gray-300 p-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-80"
+            class="flex-grow border border-gray-300 p-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
         <!-- Przycisk -->
@@ -48,22 +47,21 @@
             SZUKAJ
         </button>
     </form>
-
-
-
-    @if(strlen($query) > 2 && count($faqs) > 0)
-        <ul class="bg-white shadow-lg mt-2 rounded-lg z-20 
-        {{ $style === 'header' ? 'absolute' : '' }}
-         {{ $style === 'header' ? 'w-1/4' : 'w-full' }}" wire:click.outside="clearResults">
-        
-            @forelse($faqs as $faq)
-                <li class="p-2 border-b hover:bg-gray-100">
-                    <a href="{{ route('faq.show', $faq) }}">{{ $faq->title }}</a>
-                    <p class="text-gray-600 text-sm">{!! $faq->excerpt !!}</p>
-                </li>
-            @empty
-                <li class="p-2">Brak wyników.</li>
-            @endforelse
-        </ul>
-    @endif
 </div>
+
+<!-- Wyniki wyszukiwania -->
+@if(strlen($query) > 2 && count($faqs) > 0)
+
+    <div class="flex justify-center mt-4">
+        <ul class="bg-white shadow-lg rounded-lg z-20 w-3/4 max-w-4xl ">
+            @foreach($faqs as $faq)
+                <li class="p-2 border-b hover:bg-gray-100">
+                    <a href="{{ route('faq.show', $faq) }}" class="block">
+                        <h3 class="font-bold text-blue-500">{{ $faq->title }}</h3>
+                        <p class="text-gray-600 text-sm">{!! $faq->excerpt !!}</p>
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+@endif

@@ -12,14 +12,14 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $categories = [
-            ['name' => 'Domena'],
-            ['name' => 'Poczta E-mail'],
-            ['name' => 'Oprogramowanie'],
-            ['name' => 'Praca Zdalna'],
-            ['name' => 'Wi-Fi'],
-            ['name' => 'Drukarki i skanery'],
-            ['name' => 'Komputery służbowe'],
-            ['name' => 'Wsparcie techniczne'],
+            ['name' => 'Domena', 'background_image' => '/images/categoryBG/logowanie.jpg'],
+            ['name' => 'Poczta E-mail', 'background_image' => '/images/categoryBG/e-mail.jpg'],
+            ['name' => 'Oprogramowanie', 'background_image' => '/images/categoryBG/logowanie.jpg'],
+            ['name' => 'Praca Zdalna', 'background_image' => '/images/categoryBG/logowanie.jpg'],
+            ['name' => 'Wi-Fi', 'background_image' => '/images/categoryBG/wi-fi.jpg'],
+            ['name' => 'Drukarki i skanery', 'background_image' => '/images/categoryBG/printer.jpg'],
+            ['name' => 'Komputery służbowe', 'background_image' => '/images/categoryBG/logowanie.jpg'],
+            ['name' => 'Wsparcie techniczne', 'background_image' => '/images/categoryBG/logowanie.jpg'],
             
         ];
 

@@ -15,6 +15,7 @@
         <a href="{{ route('admin.users.index') }}" class="bg-cyan-500 text-white p-4 rounded-lg text-center shadow hover:bg-cyan-600">
             Zarządzaj Użytkownika
         </a>
+        
     </div>
 </div>
 @endsection

@@ -15,7 +15,7 @@ class FaqController extends Controller
         $faqs = Faq::with('category')
             ->where('title', 'like', "%$query%")
             ->orWhere('content', 'like', "%$query%")
-            ->paginate(4);
+            ->paginate(10);
     
         return view('faqs.index', compact('faqs', 'query'));
     }
