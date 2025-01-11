@@ -10,7 +10,7 @@
         @forelse ($faqs as $faq)
         <li class="mb-4 border-b pb-4">
             <h2 class="text-lg font-semibold text-blue-500">
-                <a href="{{ route('faqs.show', $faq) }}">{{ $faq->title }}</a>
+                <a href="{{ route('faq.show', $faq) }}">{{ $faq->title }}</a>
             </h2>
             <p class="text-gray-600">{{ Str::limit($faq->content, 100) }}</p>
         </li>

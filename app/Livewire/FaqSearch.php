@@ -10,11 +10,13 @@ class FaqSearch extends Component
 
     public $query = '';
     public $faqs = [];
+    public $faqVisible = true;
     public $style = 'default';
 
     public function updatedQuery()
     {
-        $this->faqs = Faq::with('category', 'tags')
+        if($this->faqVisible){
+            $this->faqs = Faq::with('category', 'tags')
             ->where('title', 'like', '%' . $this->query . '%')
             ->orWhere('content', 'like', '%' . $this->query . '%')
             ->limit(10)
@@ -27,13 +29,21 @@ class FaqSearch extends Component
                     $faq->excerpt = '...' . str_replace($this->query, '<mark>' . $this->query . '</mark>', $excerpt) . '...';
                     
                 } else {
-                    $faq->excerpt = Str::limit($faq->content, 100); // Domyślnie wyświetl początek treści
+                    $faq->excerpt = Str::limit($faq->content, 100);
                 }
     
                 return $faq;
             });
+        }
+        
     }
     
+
+    public function clearResults()
+    {
+        $this->faqVisible = false;
+    }
+
 
     public function render()
     {

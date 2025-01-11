@@ -17,4 +17,15 @@ class Category extends Model
     {
         return $this->faqs()->count();
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleted(function ($category) {
+        
+            \App\Models\Faq::where('category_id', $category->id)
+                ->update(['category_id' => 0]);
+        });
+    }
 }

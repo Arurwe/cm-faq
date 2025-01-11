@@ -6,8 +6,10 @@
 <div class="container">
 
 
-        <div class="mt-8">
-            <h2 class="text-2xl font-semibold">Szukaj pytań</h2>
+        <div class="mt-8 ">
+            <h2 class="text-5xl font-semibold text-center mb-2">Jak możemy pomóc?</h2>
+            <p class="justify-center text-center mb-2" >Zacznij pisać pytanie, a wyszukiwarka pomożę znaleźć Ci temat z rozwiązaniem problemu.<br />
+            Brak odpowiedniego tematu? <a href="#zglos" class="underline bold-600 hover:text-orange-500">Napisz zgłoszenie</a></p>
             @livewire('faq-search', ['style' => 'main'])
         </div>
 
@@ -15,12 +17,12 @@
         <!-- Sekcja kategorii -->
         <div class="mt-8 " > 
             <hr class="border-t w-3/4 border-gray-400 mx-auto">
-            <h2 class="text-2xl font-semibold text-center mt-2">Kategorie</h2>
+            <h2 class="text-3xl font-semibold text-center mt-2">Kategorie</h2>
             <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($categories as $category)
-                    <li class="bg-white shadow-md rounded p-4">
-                        <a href="{{ route('categories.show', $category) }}" class="block">
-                            <h3 class="text-xl font-semibold text-blue-500">{{ $category->name }}</h3>
+                    <li class="bg-white shadow-md rounded p-4 hover:bg-slate-100 group">
+                        <a href="{{ route('category.show', $category) }}" class="block text-center">
+                            <h3 class="text-xl font-semibold text-blue-500 group-hover:text-blue-800">{{ $category->name }}</h3>
                             <p class="text-gray-600 mt-2">
                                 {{ $category->faqs_count ?? 0 }} pytań
                             </p>
@@ -35,12 +37,13 @@
     <div class="mt-8 ">
         <hr class="border-t w-3/4 border-gray-400 mx-auto">
         <h2 class="text-2xl font-semibold text-center mt-2">Najczęściej zadawane pytania</h2>
-        <ul class="mt-4">
+        <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($mostViewedFaqs as $faq)
-                <li class="bg-white shadow-md rounded p-4 mb-4">
-                    <a href="{{ route('faqs.show', $faq->id) }}" class="block">
-                        <h3 class="text-xl font-semibold text-blue-500">{{ $faq->title }}</h3>
-                        <p class="text-gray-600 mt-2">
+                <li class="bg-white shadow-md rounded p-4 mb-4 ml-4 hover:bg-slate-100 group ">
+                    <a href="{{ route('faq.show', $faq->id) }}" class="block">
+                        <h3 class="text-xl font-semibold text-blue-500 group-hover:text-blue-800 ">{{ $faq->title }}</h3>
+                        <p class="text-gray-500 mt-2">{{ $faq->content }}</p>
+                        <p class="text-gray-300 mt-2">
                             Liczba wyświetleń: {{ $faq->views }}
                         </p>
                     </a>
@@ -49,7 +52,7 @@
         </ul>
     </div> 
 
-    <div class="mt-8">
+    <div class="mt-8" id="zglos">
         <hr class="border-t w-3/4 border-gray-400 mx-auto">
         <h2 class="text-2xl font-semibold text-center mt-2 mb-4">Zgłoś problem</h2>
     
@@ -80,22 +83,7 @@
                 <input type="email" id="email" name="email" class="mt-1 p-2 w-full border border-gray-300 rounded-lg" required>
             </div>
     
-            <!-- Opcje wyboru -->
-            <div class="mb-6">
-                <span class="text-sm font-medium text-gray-700">Wybierz opcję zgłoszenia:</span>
-                
-                <div class="mt-2 space-y-2">
-                    <label class="flex items-center">
-                        <input type="radio" name="report_type" value="mail" class="mr-2">
-                        Wyślij mail zgłoszeniowy
-                    </label>
-                    
-                    <label class="flex items-center">
-                        <input type="radio" name="report_type" value="faq_proposal" class="mr-2">
-                        Propozycja FAQ
-                    </label>
-                </div>
-            </div>
+           
             <!-- Pole tekstowe -->
             <div class="mb-4">
                 <label for="message" class="block text-sm font-medium text-gray-700">Opisz swój problem</label>

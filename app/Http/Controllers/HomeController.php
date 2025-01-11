@@ -11,7 +11,7 @@ class HomeController extends Controller
     {
         $categories = Category::withCount('faqs')->get();
 
-        $mostViewedFaqs = Faq::orderBy('views', 'desc')->take(5)->get();
+        $mostViewedFaqs = Faq::orderBy('views', 'desc')->take(6)->get();
 
         return view('home', compact('categories', 'mostViewedFaqs'));
     }

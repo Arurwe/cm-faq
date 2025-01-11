@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Zarządzaj FAQ')
 
 @section('content')
 <div class="container">
-    <h1 class="text-2xl font-bold">FAQ</h1>
+    <h1 class="text-2xl font-bold mb-4">FAQ</h1>
     <a href="{{ route('admin.faqs.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Dodaj nowe FAQ</a>
     <table class="table-auto w-full mt-4">
         <thead>

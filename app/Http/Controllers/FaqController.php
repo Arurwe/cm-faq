@@ -8,16 +8,18 @@ use Illuminate\Http\Request;
 
 class FaqController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         $query = $request->input('query', '');
-        $faqs = Faq::with('category','tags')
-        ->where('title','like','%$query%')
-        ->orWhere('content', 'like', '%$query')
-        ->paginate(10);
-        
+    
+        $faqs = Faq::with('category')
+            ->where('title', 'like', "%$query%")
+            ->orWhere('content', 'like', "%$query%")
+            ->paginate(4);
+    
         return view('faqs.index', compact('faqs', 'query'));
     }
-
+    
     public function show(Faq $faq){
         $faq->increment('views');
         return view('faqs.show', compact('faq'));

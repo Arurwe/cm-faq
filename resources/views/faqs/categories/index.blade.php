@@ -8,7 +8,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @foreach ($categories as $category)
-        <a href="{{ route('categories.show', $category) }}">
+        <a href="{{ route('category.show', $category) }}">
             <div class="bg-white shadow-md rounded p-4">
                 <h2 class="text-xl font-semibold text-blue-500">{{ $category->name }}</h2>
                 <p class="text-gray-600 mt-2">

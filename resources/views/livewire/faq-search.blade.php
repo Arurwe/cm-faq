@@ -1,4 +1,4 @@
-<div>
+{{-- <div>
     <form method="GET" action="{{ route('faqs.index') }}">
         <input 
             name="query"
@@ -10,9 +10,7 @@
         />
 
         <button type="submit" class=" border-solid border-2 border-black rounded-lg p-2  ">
-            <svg class="w-6 h-4 text-gray-500 hover:text-blue-500 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M16.31 13.25A6.5 6.5 0 1113.25 2a6.5 6.5 0 013.06 11.25z" />
-            </svg>
+            SZUKAJ
         </button>
 
     </form>
@@ -23,6 +21,44 @@
             @forelse($faqs as $faq)
                 <li class="p-2 border-b hover:bg-gray-100">
                     <a href="{{ route('faqs.show', $faq) }}">{{ $faq->title }}</a>
+                    <p class="text-gray-600 text-sm">{!! $faq->excerpt !!}</p>
+                </li>
+            @empty
+                <li class="p-2">Brak wyników.</li>
+            @endforelse
+        </ul>
+    @endif
+</div> --}}
+
+
+
+<div >
+    <form method="GET" action="{{ route('faq.index') }}" >
+        <!-- Pole wyszukiwania -->
+        <input 
+            name="query"
+            type="text" 
+            wire:model.live.debounce.500ms="query" 
+            placeholder="Szukaj w FAQ..." 
+            class="  border border-gray-300 p-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-80"
+        />
+
+        <!-- Przycisk -->
+        <button type="submit" class="bg-blue-500 text-white border border-blue-500 rounded-r-lg px-4 py-2 font-semibold hover:bg-blue-600">
+            SZUKAJ
+        </button>
+    </form>
+
+
+
+    @if(strlen($query) > 2 && count($faqs) > 0)
+        <ul class="bg-white shadow-lg mt-2 rounded-lg z-20 
+        {{ $style === 'header' ? 'absolute' : '' }}
+         {{ $style === 'header' ? 'w-1/4' : 'w-full' }}" wire:click.outside="clearResults">
+        
+            @forelse($faqs as $faq)
+                <li class="p-2 border-b hover:bg-gray-100">
+                    <a href="{{ route('faq.show', $faq) }}">{{ $faq->title }}</a>
                     <p class="text-gray-600 text-sm">{!! $faq->excerpt !!}</p>
                 </li>
             @empty
