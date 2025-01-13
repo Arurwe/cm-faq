@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('category_id')
                   ->nullable()
                   ->constrained()
-                  ->onDelete('set null'); // Ustawiamy na null w przypadku usunięcia kategorii
+                  ->onDelete('set null');
             $table->integer('views')->default(0);
             $table->timestamps();
         });

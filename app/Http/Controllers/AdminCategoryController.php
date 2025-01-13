@@ -74,15 +74,15 @@ class AdminCategoryController extends Controller
     public function updateImage(Request $request, Category $category)
     {
         $request->validate([
-            'background_image' => 'required|image|max:2048', // Walidacja zdjęcia
+            'background_image' => 'required|image|max:2048', 
         ]);
 
-        // Usuń poprzednie zdjęcie (opcjonalne)
+      
         if ($category->background_image) {
             Storage::disk('public')->delete($category->background_image);
         }
 
-        // Zapisz nowe zdjęcie
+      
         $path = $request->file('background_image')->store('categories', 'public');
         $category->update(['background_image' => $path]);
 
