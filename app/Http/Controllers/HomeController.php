@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $categories = Category::withCount('faqs')->orderByDesc('faqs_count')->get();
+        $categories = Category::withCount('faqs')->orderByDesc('faqs_count')->take(8)->get();
 
         $mostViewedFaqs = Faq::orderBy('views', 'desc')->take(6)->get();
 

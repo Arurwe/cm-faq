@@ -1,6 +1,23 @@
 <div class="mt-8">
     <hr class="border-t w-3/4 border-gray-400 mx-auto">
     <h2 class="text-4xl font-semibold text-center mt-2 ">Kategorie</h2>
+    @if (!request()->is('/'))
+        <!-- Przycisk sortowania -->
+        <div class="flex justify-center mb-6 space-x-4 mt-6">
+            <a href="{{ route('category.index', ['sort' => 'alphabetical']) }}" 
+               class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition">
+                Sortuj alfabetycznie
+            </a>
+            <a href="{{ route('category.index', ['sort' => 'order']) }}" 
+               class="bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 transition">
+                Sortuj według ułożenia
+            </a>
+            <a href="{{ route('category.index', ['sort' => 'faq_count']) }}" 
+               class="bg-purple-500 text-white px-4 py-2 rounded-lg shadow hover:bg-purple-600 transition">
+                Sortuj po największej liczbie FAQ
+            </a>
+        </div>
+    @endif
     <ul class="mt-4 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         @foreach ($categories as $category)
             <li 

@@ -13,9 +13,19 @@ class AdminFaqController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $faqs = Faq::with('category')->paginate(10);
+        $sort = $request->input('sort', 'id');
+        $direction = $request->input('direction', 'asc');
+        $faqs = Faq::with('category')
+        ->when($sort === 'category_name', function ($query) use ($direction) {
+            $query->join('categories', 'faqs.category_id', '=', 'categories.id')
+                  ->select('faqs.*', 'categories.name as category_name')
+                  ->orderBy('categories.name', $direction);
+        }, function ($query) use ($sort, $direction) {
+            $query->orderBy($sort, $direction);
+        })
+        ->paginate(10);
         return view('admin.faqs.index', compact('faqs'));
     }
 

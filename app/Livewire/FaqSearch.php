@@ -4,13 +4,12 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Faq;
-use Illuminate\Support\Str;
 
 class FaqSearch extends Component
 {
     public $query = '';
     public $faqs = [];
-    public $style = "";
+    public $style ='';
 
     public function updatedQuery()
     {
@@ -29,3 +28,4 @@ class FaqSearch extends Component
         return view('livewire.faq-search');
     }
 }
+

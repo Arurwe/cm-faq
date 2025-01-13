@@ -8,7 +8,7 @@
 
     <!-- Sekcja kategorii -->
     <div class="mt-8 " > 
-        <x-category-list :categories="$categories" />
+        <x-category-list :categories="$categories" style="categoriesPage" />
         
      </div>
 </div>

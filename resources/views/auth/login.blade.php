@@ -44,4 +44,6 @@
             </x-primary-button>
         </div>
     </form>
+
+    <a class="flex justify-center mt-2 p-4 border-blue-300 border-solid rounded border-2 hover:bg-blue-900 hover:text-white" href="{{ route('home') }}">POWRÓT NA STRONĘ GŁÓWNĄ</a>
 </x-guest-layout>

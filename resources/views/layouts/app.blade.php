@@ -25,7 +25,7 @@
                 <ul class="flex space-x-4">
                     <li><a href="{{ route('faq.index') }}" class="text-gray-700 hover:text-blue-500">FAQ</a></li>
                     <li><a href="{{ route('category.index') }}" class="text-gray-700 hover:text-blue-500">Kategorie</a></li>
-                    <li><a href="{{ route('category.index') }}" class="text-gray-700 hover:text-blue-500">Zgłoszenie</a></li>
+                    <li><a href="/#zglos" class="text-gray-700 hover:text-blue-500">Zgłoszenie</a></li>
                     @auth
                     <li><form action="{{ route("logout") }}" method="post">@csrf <input class="text-gray-700 hover:text-blue-500" type="submit" value="Wyloguj"></form></li>
                    @else

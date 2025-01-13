@@ -84,5 +84,17 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 
-// Trasa wylogowania
+
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+
+use App\Http\Controllers\Admin\SearchQueryController;
+
+Route::get('/admin/search-queries', [SearchQueryController::class, 'index'])->name('admin.search-queries');
+Route::post('/admin/search-queries', [SearchQueryController::class, 'index'])->name('admin.search-queries');
+
+Route::patch('/admin/categories/{category}/update-order', [CategoryController::class, 'updateOrder'])->name('admin.categories.updateOrder');
+
+Route::patch('/admin/categories/{category}/move-up', [AdminCategoryController::class, 'moveUp'])->name('admin.categories.moveUp');
+Route::patch('/admin/categories/{category}/move-down', [AdminCategoryController::class, 'moveDown'])->name('admin.categories.moveDown');

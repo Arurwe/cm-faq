@@ -46,7 +46,7 @@
  
      <!-- Treść FAQ -->
      @if ($faq->files->where('option', 3)->isEmpty())
-         <div class="mb-6">
+         <div class="bg-white shadow-md rounded-lg p-6 mb-6">
              {!! $faq->content !!}
          </div>
      @endif

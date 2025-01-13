@@ -9,18 +9,15 @@ use App\Models\Category;
 
 class AdminCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::all();
+        $sort = $request->input('sort', 'order'); // Domyślnie sortuj po 'order'
+        $direction = $request->input('direction', 'asc'); // Domyślny kierunek 'asc'
+    
+        $categories = Category::orderBy($sort, $direction)->get();
+    
         return view('admin.categories.index', compact('categories'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
@@ -89,4 +86,45 @@ class AdminCategoryController extends Controller
         return redirect()->route('admin.categories.index')
             ->with('success', 'Zdjęcie zostało zaktualizowane.');
     }
+
+
+  
+    
+    public function moveUp(Category $category)
+{
+    $currentOrder = $category->order;
+
+    // Znajdź kategorię o mniejszym `order`
+    $previousCategory = Category::where('order', '<', $currentOrder)
+                                ->orderBy('order', 'desc')
+                                ->first();
+
+    if ($previousCategory) {
+        // Zamień `order` między kategoriami
+        $category->update(['order' => $previousCategory->order]);
+        $previousCategory->update(['order' => $currentOrder]);
+    }
+
+    return back()->with('success', 'Kategoria przesunięta w górę.');
+}
+
+public function moveDown(Category $category)
+{
+    $currentOrder = $category->order;
+
+    // Znajdź kategorię o większym `order`
+    $nextCategory = Category::where('order', '>', $currentOrder)
+                             ->orderBy('order', 'asc')
+                             ->first();
+
+    if ($nextCategory) {
+        // Zamień `order` między kategoriami
+        $category->update(['order' => $nextCategory->order]);
+        $nextCategory->update(['order' => $currentOrder]);
+    }
+
+    return back()->with('success', 'Kategoria przesunięta w dół.');
+}
+
+
 }

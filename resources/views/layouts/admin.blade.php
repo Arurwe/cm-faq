@@ -8,7 +8,8 @@
 
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
-
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 <body class="bg-gray-100">
 
@@ -19,7 +20,7 @@
                 Panel Admina
             </div>
             <nav class="flex flex-col h-screen">
-                <ul class="flex-grow space-y-2 mt-4">
+                <ul class="flex-grow pt-4">
                     <li class="border-b border-gray-300">
                         <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2 hover:bg-blue-700 rounded">
                             Dashboard
@@ -38,6 +39,11 @@
                     <li class="border-b border-gray-300">
                         <a href="{{ route('admin.users.index') }}" class="block px-4 py-2 hover:bg-blue-700 rounded">
                             Zarządzaj użytkownikami
+                        </a>
+                    </li>
+                    <li class="border-b border-gray-300">
+                        <a href="{{ route('admin.search-queries') }}" class="block px-4 py-2 hover:bg-blue-700 rounded">
+                            Wyszukiwane frazy
                         </a>
                     </li>
                 </ul>
