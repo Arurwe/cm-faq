@@ -4,13 +4,13 @@
 
 @section('content')
 <div class="container mx-auto px-4 py-6">
-    <form method="get" action="{{ route("admin.search-queries") }}">
+    
+    <h1 class="text-2xl font-bold mb-4">Wyszukiwane frazy</h1>
+    <form method="get" action="{{ route("admin.search-queries") }}" class="mb-4">
         @csrf
         <input type="text" name="adminSearchQueries" placeholder="Wyszukaj frazę" value="{{ old('adminSearchQueries', request('adminSearchQueries', '')) }}">
-        <button type="submit">Szukaj</button>
+        <button type="submit" class="bg-blue-500 text-white border border-blue-500 font-semibold rounded-r-lg px-4 py-2 hover:bg-blue-600">Szukaj</button>
     </form>
-    <h1 class="text-2xl font-bold mb-6">Wyszukiwane frazy</h1>
-
     <table class="table-auto w-full bg-white shadow-md rounded-lg">
         <thead>
             <tr class="bg-gray-200 text-left">

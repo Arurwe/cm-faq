@@ -4,10 +4,10 @@
 
 @section('content')
 <div class="container mx-auto px-4 py-6">
-    <h1 class="text-2xl font-bold text-gray-700 mb-6">Zarządzaj kategoriami</h1>
+    <h1 class="text-2xl font-bold mb-4">Zarządzaj kategoriami</h1>
 
     <!-- Przycisk dodaj kategorię -->
-    <div class="flex justify-end mb-6">
+    <div class="flex justify-start mb-6">
         <a href="{{ route('admin.categories.create') }}" 
            class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition">
             Dodaj kategorię
@@ -18,7 +18,7 @@
     <div class="overflow-x-auto bg-white shadow-md rounded-lg">
         <table class="table-auto w-full border-collapse">
             <thead>
-                <tr class="bg-gray-100">
+                <tr class="bg-gray-100 border-t-2">
                     <th class="px-4 py-2 border text-center text-gray-700">Kolejność
                         <div class="inline-block ml-2">
                             <button onclick="sortTable('order', 'asc')" class="text-gray-500 hover:text-gray-700">

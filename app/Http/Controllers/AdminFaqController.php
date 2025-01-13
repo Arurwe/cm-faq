@@ -14,20 +14,32 @@ class AdminFaqController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request)
-    {
-        $sort = $request->input('sort', 'id');
-        $direction = $request->input('direction', 'asc');
-        $faqs = Faq::with('category')
-        ->when($sort === 'category_name', function ($query) use ($direction) {
-            $query->join('categories', 'faqs.category_id', '=', 'categories.id')
-                  ->select('faqs.*', 'categories.name as category_name')
-                  ->orderBy('categories.name', $direction);
-        }, function ($query) use ($sort, $direction) {
-            $query->orderBy($sort, $direction);
+{
+    $sort = $request->input('sort', 'id');
+    $direction = $request->input('direction', 'asc');
+    $query = $request->input('adminSearchFaq', '');  // Zmienna do przechowywania tekstu wyszukiwania
+
+    $faqs = Faq::with('category')
+        // Dodajemy wyszukiwanie tylko, jeśli wprowadzone jest hasło w polu wyszukiwania
+        ->when($query, function ($queryBuilder) use ($query) {
+            return $queryBuilder->where(function ($queryBuilder) use ($query) {
+                $queryBuilder->where('faqs.title', 'like', '%' . $query . '%');
+            });
         })
-        ->paginate(10);
-        return view('admin.faqs.index', compact('faqs'));
-    }
+        // Sortowanie po nazwie kategorii
+        ->when($sort === 'category_name', function ($queryBuilder) use ($direction) {
+            $queryBuilder->join('categories', 'faqs.category_id', '=', 'categories.id')
+                         ->select('faqs.*', 'categories.name as category_name')
+                         ->orderBy('categories.name', $direction);
+        }, function ($queryBuilder) use ($sort, $direction) {
+            // Sortowanie po innych polach
+            $queryBuilder->orderBy($sort, $direction);
+        })
+        ->paginate(10); // Paginacja
+
+    return view('admin.faqs.index', compact('faqs'));
+}
+
 
     /**
      * Show the form for creating a new resource.
