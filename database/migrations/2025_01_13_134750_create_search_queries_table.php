@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('faq_files', function (Blueprint $table) {
+        Schema::create('search_queries', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('faq_id');
-            $table->string('file_path');
-            $table->string('content_before')->nullable();
-            $table->integer('option')->default(1);
+            $table->string('query')->unique(); 
+            $table->unsignedInteger('count')->default(1); 
             $table->timestamps();
-            $table->foreign('faq_id')->references('id')->on('faqs')->onDelete('cascade');
         });
     }
 
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('faq_files');
+        Schema::dropIfExists('search_queries');
     }
 };

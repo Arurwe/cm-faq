@@ -28,7 +28,8 @@
                 <li class="bg-white shadow-md rounded p-4 mb-4 ml-4 hover:bg-slate-100 group ">
                     <a href="{{ route('faq.show', $faq->id) }}" class="block">
                         <h3 class="text-xl font-semibold text-blue-500 group-hover:text-blue-800 ">{{ $faq->title }}</h3>
-                        <p class="text-gray-500 mt-2">{{ Str::limit($faq->content, 100) }}</p>
+                        <p class="text-gray-500 mt-2">{{ Str::limit(strip_tags($faq->content), 100) }}</p>
+
                         <p class="text-gray-300 mt-2">
                             Liczba wyświetleń: {{ $faq->views }}
                         </p>

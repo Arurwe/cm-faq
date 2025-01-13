@@ -32,32 +32,60 @@ class AdminFaqController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
-        $data = $request->validate([
+        // Walidacja danych
+        $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required',
+            'content' => 'string',
             'category_id' => 'required|exists:categories,id',
-            'tags' => 'array',
+            'files.*' => 'nullable|file|mimes:pdf,ppt,pptx|max:10240', // Maks. 10MB na plik
+            'file_descriptions.*' => 'nullable|string|max:255',
+            'file_options.*' => 'nullable|integer|in:1,2,3',
+            'fileFaq' => 'nullable|string|in:1', // Dodanie walidacji dla ukrytego pola
         ]);
-
-      
-
-        $faq = Faq::create($data);
-        if($request->hasFile('files')){
-            foreach($request->file('files') as $index => $file){
-                $path = $file->storage('faq_files');
+    
+        // Tworzenie FAQ
+        $faqData = [
+            'title' => $request->title,
+            'content' => $request->faqTypePost === "1" ? 'FILE' : $request->content,
+            'category_id' => $request->category_id,
+        ];
+    
+        $faq = Faq::create($faqData);
+    
+        // Przetwarzanie plików
+        if ($request->faqTypePost === "2") {
+            if ($request->hasFile('files')) {
+                foreach ($request->file('files') as $index => $file) {
+                    $filePath = $file->store('faq_files', 'public');
+        
+                    FaqFile::create([
+                        'faq_id' => $faq->id,
+                        'file_path' => $filePath,
+                        'content_before' => $request->file_descriptions[$index] ?? null,
+                        'option' => $request->file_options[$index] ?? 1,
+                    ]);
+                }
+            }
+        }
+        if ($request->faqTypePost === "1") {
+            if ($request->hasFile('faqfile')) {
+                $filePath = $request->file('faqfile')->store('faq_files', 'public');
                 FaqFile::create([
                     'faq_id' => $faq->id,
-                    'file_path'=> $path,
-                    'trex`sc' => $request->file_option[$index],
+                    'file_path' => $filePath,
+                    'content_before' => null, 
+                    'option' => 3,           
                 ]);
             }
         }
-        
-
-        return redirect()->route('admin.faqs.index')->with('success', 'FAQ dodano pomyślnie!');
+    
+    
+        return redirect()->route('admin.faqs.index')->with('success', 'FAQ zostało dodane.');
     }
+    
 
     /**
      * Display the specified resource.

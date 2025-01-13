@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class FaqFile extends Model
 {
-    protected $fillable =['file_path', 'content_before', 'faq_id', ];
+    protected $fillable =['file_path', 'content_before', 'faq_id', 'option' ];
 
     public function faq(){
         return $this->belongsTo(Faq::class);

@@ -25,7 +25,7 @@
                     <a href="{{ route('faq.show', $faq) }}" class="underline text-xl font-semibold text-blue-600 hover:text-blue-800">
                         {{ $faq->title }}
                     </a>
-                    <p class="text-gray-600 mt-2">{{ Str::limit($faq->content, 200) }}</p>
+                    <p class="text-gray-600 mt-2">{{ Str::limit(strip_tags($faq->content, 200)) }}</p>
                 </li>
             @empty
                 <li class="bg-white shadow-md rounded-lg p-4">

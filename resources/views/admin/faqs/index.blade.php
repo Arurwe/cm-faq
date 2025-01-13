@@ -6,9 +6,10 @@
 <div class="container">
     <h1 class="text-2xl font-bold mb-4">FAQ</h1>
     <a href="{{ route('admin.faqs.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Dodaj nowe FAQ</a>
+
     <table class="table-auto w-full mt-4">
         <thead>
-            <tr>
+            <tr class="border-t-2">
                 <th class="px-4 py-2">Tytuł</th>
                 <th class="px-4 py-2">Kategoria</th>
                 <th class="px-4 py-2">Opcje</th>

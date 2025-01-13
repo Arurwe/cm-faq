@@ -29,27 +29,27 @@
                 
                 <p class="text-gray-600 text-sm">
                     @php
-                        $content = $faq->content;
-                        $position = mb_stripos($content, $query);
-                        if ($position !== false) {
-                            $start = max($position - 30, 0); 
-                            $style === 'main' ? $length = 150 + mb_strlen($query) : $length= 45 + mb_strlen($query);
-                            $excerpt = mb_substr($content, $start, $length);
-                            if ($start > 0) {
-                                $excerpt = '...' . $excerpt;
-                            }
-                            if ($start + $length < mb_strlen($content)) {
-                                $excerpt .= '...';
-                            }
-
-                            // Wyróżnienie wyszukiwanego tekstu
-                            $excerpt = str_ireplace($query, "<mark class='bg-yellow-300'>$query</mark>", $excerpt);
-
-                            echo $excerpt;
-                        } else {
-                            echo Str::limit($content, 100);
+                    $content = strip_tags($faq->content); // Usunięcie tagów HTML z zawartości
+                    $position = mb_stripos($content, $query);
+                    if ($position !== false) {
+                        $start = max($position - 30, 0);
+                        $style === 'main' ? $length = 150 + mb_strlen($query) : $length = 45 + mb_strlen($query);
+                        $excerpt = mb_substr($content, $start, $length);
+                        if ($start > 0) {
+                            $excerpt = '...' . $excerpt;
                         }
-                    @endphp
+                        if ($start + $length < mb_strlen($content)) {
+                            $excerpt .= '...';
+                        }
+                
+                        // Wyróżnienie wyszukiwanego tekstu
+                        $excerpt = str_ireplace($query, "<mark class='bg-yellow-300'>$query</mark>", $excerpt);
+                
+                        echo $excerpt;
+                    } else {
+                        echo Str::limit(strip_tags($content), 100); // Upewnienie się, że nie ma tagów HTML
+                    }
+                @endphp
                 </p>
             </a>
             </li>
