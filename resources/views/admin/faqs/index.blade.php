@@ -7,7 +7,7 @@
     <h1 class="text-2xl font-bold mb-4">Zarządzaj FAQ</h1>
 
     <!-- Przycisk dodaj FAQ -->
-    <div class="flex justify-start mb-6">
+    <div class="flex justify-start space-x-5 mb-6">
         <a href="{{ route('admin.faqs.create') }}" 
            class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition">
             Dodaj nowe FAQ

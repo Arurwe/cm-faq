@@ -17,5 +17,8 @@
         </a>
         
     </div>
+
+    <p>Ilość wszystkich postów: {{ $faqsCount}}</p>
+
 </div>
 @endsection

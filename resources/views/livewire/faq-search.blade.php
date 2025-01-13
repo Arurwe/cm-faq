@@ -7,11 +7,11 @@
             type="text" 
             wire:model.live.debounce.500ms="query" 
             placeholder="Szukaj w FAQ..." 
-            class="flex-grow border border-gray-300 p-2 
-                   {{ $style === 'header' ? 'rounded-lg focus:ring-blue-500 max-w-2xl' : 'rounded-l-lg focus:ring-blue-500 max-w-2xl' }}"
+            class="flex-grow border border-gray-300 p-2 rounded-l-lg
+                   {{ $style === 'header' ? ' focus:ring-blue-500 max-w-2xl' : ' focus:ring-blue-500 max-w-2xl' }}"
         />
-        <button type="submit" class="bg-blue-500 text-white border border-blue-500 
-                                     {{ $style === 'header' ? 'rounded-lg' : 'rounded-r-lg px-4 py-2' }} 
+        <button type="submit" class="bg-blue-500 text-white border border-blue-500 rounded-r-lg px-4 py-2
+                                     {{ $style === 'header' ? '' : ' ' }} 
                                      font-semibold hover:bg-blue-600">
             SZUKAJ
         </button>

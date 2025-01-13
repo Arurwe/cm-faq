@@ -70,17 +70,10 @@
                      <iframe toolbar="0" src="{{ asset('storage/' . $file->file_path) }}" class="w-full h-screen"></iframe>
                  @elseif (Str::endsWith($file->file_path, '.ppt') || Str::endsWith($file->file_path, '.pptx'))
                      <!-- Prezentacja -->
-                     <object
-                         data="{{ asset('storage/' . $file->file_path) }}"
-                         type="application/pdf"
-                         class="w-full h-screen"
-                         
-                     >
-                         <p>
-                             Twoja przeglądarka nie obsługuje wyświetlania plików PDF.
-                             
-                         </p>
-                     </object>
+                     <object data="https://docs.google.com/gview?url={{ asset('storage/' . $file->file_path) }}&embedded=true" type="application/pdf" class="w-full h-screen">
+                        <p>Twoja przeglądarka nie obsługuje wyświetlania plików PowerPoint.</p>
+                    </object>
+                    <iframe src="https://view.officeapps.live.com/op/embed.aspx?src={{ urlencode(asset('storage/' . $file->file_path)) }}" width="100%" height="100%" frameborder="0"> </iframe>
                  @endif
              </div>
          @endif

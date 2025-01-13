@@ -39,10 +39,10 @@ Route::get('/categories/{category}', [CategoryController::class, 'show'])->name(
 
 use App\Http\Controllers\AdminFaqController ;
 use App\Http\Controllers\AdminCategoryController;
+use App\Http\Controllers\AdminDashboardController;
+
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    Route::get('/', [AdminDashboardController::class,'index'])->name('admin.dashboard');
 
     Route::resource('faqs', AdminFaqController::class)->names([
         'index' => 'admin.faqs.index',

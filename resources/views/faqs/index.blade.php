@@ -20,13 +20,13 @@
     @endif
     
         <ul class="space-y-4">
-            @forelse($faqs as $faq)
-                <li class="bg-white shadow-md rounded-lg p-4 hover:bg-gray-100 transition-all duration-300">
-                    <a href="{{ route('faq.show', $faq) }}" class="underline text-xl font-semibold text-blue-600 hover:text-blue-800">
-                        {{ $faq->title }}
-                    </a>
+            @forelse($faqs as $faq)<a href="{{ route('faq.show', $faq) }}" class=" bg-white shadow-md rounded-lg  hover:bg-gray-100  p-4 block transition-all duration-300">
+                        
+                <li class="">
+                   <p class="font-semibold text-xl text-blue-600 hover:text-blue-800">{{ $faq->title }}</p> 
+                    
                     <p class="text-gray-600 mt-2">{{ Str::limit(strip_tags($faq->content, 200)) }}</p>
-                </li>
+                </li></a>
             @empty
                 <li class="bg-white shadow-md rounded-lg p-4">
                     <p class="text-gray-500">Brak wyników dla tego zapytania.</p>
