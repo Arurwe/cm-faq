@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+use App\Models\Category;
 
 class AdminCategoryController extends Controller
 {
@@ -11,7 +14,8 @@ class AdminCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -60,5 +64,29 @@ class AdminCategoryController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function changeImage(Category $category)
+    {
+        return view('admin.categories.change-image', compact('category'));
+    }
+
+    public function updateImage(Request $request, Category $category)
+    {
+        $request->validate([
+            'background_image' => 'required|image|max:2048', // Walidacja zdjęcia
+        ]);
+
+        // Usuń poprzednie zdjęcie (opcjonalne)
+        if ($category->background_image) {
+            Storage::disk('public')->delete($category->background_image);
+        }
+
+        // Zapisz nowe zdjęcie
+        $path = $request->file('background_image')->store('categories', 'public');
+        $category->update(['background_image' => $path]);
+
+        return redirect()->route('admin.categories.index')
+            ->with('success', 'Zdjęcie zostało zaktualizowane.');
     }
 }

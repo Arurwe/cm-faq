@@ -7,7 +7,6 @@
                 class="shadow-md rounded-lg p-4 group h-56 relative bg-cover bg-center hover:shadow-lg"
                 style="background-image: url('{{ asset($category->background_image)}}');"
             >
-                <!-- Overlay dla czytelności tekstu -->
                 <div class="absolute inset-0 bg-black bg-opacity-50 rounded-lg group-hover:bg-opacity-40 transition"></div>
                 
                 <!-- Treść kategorii -->
@@ -19,5 +18,16 @@
                 </a>
             </li>
         @endforeach
+        @if($style === "homePage")
+        <li 
+            class="shadow-md rounded-lg p-4 group h-56 relative bg-cover bg-center hover:shadow-lg"  
+            style="background-image: url('{{ asset('images/categoryBG/all.png')}}');"   >
+            <div class="absolute inset-0 bg-black bg-opacity-50 rounded-lg group-hover:bg-opacity-40 transition"></div>
+            <!-- Treść kategorii -->
+            <a href="{{ route('category.index') }}" class="relative z-10 flex flex-col items-center justify-center text-white text-center h-full">
+                <h3 class="text-2xl font-semibold group-hover:text-blue-300">Pokaż wszystkie</h3>
+            </a>
+        </li>
+        @endif
     </ul>
 </div>

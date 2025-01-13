@@ -6,10 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 
 class CategoryController extends Controller
-{
-    public function index(){
-        $categories = Category::withCount('faqs')->get();
-
+{ 
+   
+    public function index()
+    {
+        $categories = Category::withCount('faqs')
+            ->orderByDesc('order') 
+            ->get();
         return view('faqs.categories.index', compact('categories'));
     }
 
@@ -17,4 +20,6 @@ class CategoryController extends Controller
         $faqs = $category->Faqs()->paginate(10);
         return view('faqs.categories.show', compact('category', 'faqs'));
     }
+
+    
 }

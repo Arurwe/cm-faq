@@ -16,4 +16,8 @@ class Faq extends Model
     public function tags(){
         return $this->belongsToMany(Tag::class);
     }
+
+    public function faqFiles(){
+        return $this->hasMany(FaqFile::class);
+    }
 }

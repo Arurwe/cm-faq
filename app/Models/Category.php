@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $fillable = ['name', 'background_image'];
+    protected $fillable = ['name', 'background_image', 'order'];
     
     public function faqs(){
         return $this->hasMany(Faq::class);

@@ -37,8 +37,11 @@
         <!-- Załączniki -->
         <div class="mb-4">
             <label for="files" class="block text-sm font-medium text-gray-700">Załącz pliki (opcjonalnie)</label>
-            <input type="file" name="files[]" id="files" class="mt-1 p-2 w-full border rounded-lg" multiple>
+            <input type="file" multiple name="files[]" class="mt-1 p-2 w-full border rounded-lg" onchange="handleFileSelect(event)">
             <p class="text-sm text-gray-500 mt-1">Obsługiwane typy: obrazy, filmy, pliki PDF. Maks. 10MB każdy.</p>
+
+            <!-- Kontener plików i opcji -->
+            <div id="file-container"></div>
         </div>
 
         <!-- Przyciski -->
@@ -49,4 +52,40 @@
         </div>
     </form>
 </div>
+
+<script>
+   function handleFileSelect(event) {
+    const fileInput = event.target;
+    const fileContainer = document.getElementById('file-container');
+    
+    const fileInputWrapper = document.createElement('div');
+    fileInputWrapper.classList.add('flex', 'items-center', 'mb-2');
+    
+    const fileName = document.createElement('span');
+    fileName.classList.add('mr-2');
+    fileName.textContent = fileInput.files[0].name;  // Nazwa wybranego pliku
+    
+    const fileOptionInput = document.createElement('input');
+    fileOptionInput.type = 'text';
+    fileOptionInput.name = 'file_option[]';
+    fileOptionInput.classList.add('mt-1', 'p-2', 'w-full', 'border', 'rounded-lg', 'ml-2');
+    fileOptionInput.placeholder = 'Wpisz tekst, który będzie przed załącznikiem';
+
+    const removeButton = document.createElement('button');
+    removeButton.type = 'button';
+    removeButton.classList.add('text-red-500', 'ml-2');
+    removeButton.textContent = 'Usuń';
+    removeButton.onclick = function () {
+        fileInputWrapper.remove();
+    };
+
+    fileInputWrapper.appendChild(fileName);
+    fileInputWrapper.appendChild(fileOptionInput);
+    fileInputWrapper.appendChild(removeButton);
+    
+    fileContainer.appendChild(fileInputWrapper);
+}
+
+</script>
+
 @endsection

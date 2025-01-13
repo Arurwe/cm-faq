@@ -60,6 +60,10 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
         'update' => 'admin.categories.update',
         'destroy' => 'admin.categories.destroy',
     ]);
+    Route::get('categories/{category}/change-image', [AdminCategoryController::class, 'changeImage'])
+        ->name('admin.categories.changeImage');
+    Route::put('categories/{category}/update-image', [AdminCategoryController::class, 'updateImage'])
+        ->name('admin.categories.updateImage');
 });
 
 use App\Http\Controllers\Admin\UserController;

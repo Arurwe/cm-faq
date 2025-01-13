@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Faq;
 use App\Models\Category;
+use App\Models\FaqFile;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
@@ -40,8 +41,20 @@ class AdminFaqController extends Controller
             'tags' => 'array',
         ]);
 
+      
+
         $faq = Faq::create($data);
-        $faq->tags()->sync($request->tags);
+        if($request->hasFile('files')){
+            foreach($request->file('files') as $index => $file){
+                $path = $file->storage('faq_files');
+                FaqFile::create([
+                    'faq_id' => $faq->id,
+                    'file_path'=> $path,
+                    'trex`sc' => $request->file_option[$index],
+                ]);
+            }
+        }
+        
 
         return redirect()->route('admin.faqs.index')->with('success', 'FAQ dodano pomyślnie!');
     }

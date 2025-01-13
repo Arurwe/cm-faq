@@ -15,10 +15,9 @@
 
         
         <!-- Sekcja kategorii -->
-        <div class="mt-8 " > 
-            <x-category-list :categories="$categories" />
-            
-         </div>
+        <div class="mt-8">
+            <x-category-list :categories="$categories" style="homePage" />
+        </div>
 
 
     <div class="mt-8 ">
@@ -36,6 +35,7 @@
                     </a>
                 </li>
             @endforeach
+            
         </ul>
     </div> 
 

@@ -9,12 +9,12 @@ use Illuminate\View\Component;
 class CategoryList extends Component
 {
     public $categories;
+    public $style;
 
-   
-
-    public function __construct($categories)
+    public function __construct($categories, $style= null)
     {
         $this->categories = $categories;
+        $this->style = $style;
     }
 
     /**

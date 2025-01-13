@@ -12,7 +12,7 @@ class LoginController extends Controller
 {
     public function showLoginForm()
     {
-        return view('auth.login'); // Wskazuje na widok logowania (np. resources/views/auth/login.blade.php)
+        return view('auth.login'); 
     }
 
     public function login(Request $request)
@@ -37,8 +37,10 @@ class LoginController extends Controller
         Auth::logout();
 
         $request->session()->invalidate();
+
+        
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }

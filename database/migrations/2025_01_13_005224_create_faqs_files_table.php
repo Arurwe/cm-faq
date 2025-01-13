@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('faq_files', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('background_image')->nullable();
-            $table->integer('order');
+            $table->unsignedBigInteger('faq_id');
+            $table->string('file_path');
+            $table->string('content_before');
             $table->timestamps();
+            $table->foreign('faq_id')->references('id')->on('faqs')->onDelete('cascade');
         });
     }
 
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('faq_files');
     }
 };

@@ -42,6 +42,14 @@
                     </li>
                 </ul>
                 <div class="mt-auto p-4 border-t border-gray-300">
+                    <form action="{{ route("logout") }}" method="post">
+                        @csrf
+                    <button href="{{ route('logout') }}" class="block px-4 py-2 text-center  hover:bg-gray-700 rounded">
+                        Wyloguj
+                    </button>
+                </form>
+                </div>
+                <div class="mt-auto p-4 border-t border-gray-300">
                     <a href="{{ route('home') }}" class="block px-4 py-2 text-center  hover:bg-gray-700 rounded">
                         Powrót na stronę główną
                     </a>

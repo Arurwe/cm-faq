@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>@yield('title', 'CM FAQ')</title>
-    <!-- Tailwind CSS -->
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
@@ -24,22 +25,24 @@
                 <ul class="flex space-x-4">
                     <li><a href="{{ route('faq.index') }}" class="text-gray-700 hover:text-blue-500">FAQ</a></li>
                     <li><a href="{{ route('category.index') }}" class="text-gray-700 hover:text-blue-500">Kategorie</a></li>
-                   <li><a href="{{ route('category.index') }}" class="text-gray-700 hover:text-blue-500">Zgłoszenie</a></li>
-                
-                   
+                    <li><a href="{{ route('category.index') }}" class="text-gray-700 hover:text-blue-500">Zgłoszenie</a></li>
+                    @auth
+                    <li><form action="{{ route("logout") }}" method="post">@csrf <input class="text-gray-700 hover:text-blue-500" type="submit" value="Wyloguj"></form></li>
+                   @else
+                   <li><a href="{{ route('login') }}" class="text-gray-700 hover:text-blue-500">ZALOGUJ</a></li>
+                   @endauth
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Treść dynamiczna -->
-    {{-- <main class="container mx-auto mt-16 px-4 py-6 h-auto bg-gradient-to-b from-blue-100 to-cyan-0"> --}}
-
+    {{-- Główna część --}}
+    
          <main class="container mx-auto mt-12 px-4 py-6 h-auto  bg-blue-50">
         @yield('content')
     </main>
 
-    <!-- Stopka -->
+    <!-- Footer -->
     <footer class="bg-gray-800 text-gray-300 py-4 mt-8">
         <div class="container mx-auto text-center">
             <p>&copy; {{ date('Y') }} CM FAQ. Wszystkie prawa zastrzeżone.</p>
