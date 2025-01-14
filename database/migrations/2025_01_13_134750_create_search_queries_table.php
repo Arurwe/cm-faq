@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('search_queries', function (Blueprint $table) {
             $table->id();
             $table->string('query')->unique(); 
-            $table->unsignedInteger('count')->default(1); 
+            $table->unsignedInteger('count')->default(0); 
             $table->timestamps();
         });
     }

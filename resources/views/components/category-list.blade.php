@@ -38,7 +38,7 @@
         @if($style === "homePage")
         <li 
             class="shadow-md rounded-lg p-4 group h-56 relative bg-cover bg-center hover:shadow-lg"  
-            style="background-image: url('{{ asset('images/categoryBG/all.png')}}');"   >
+            style="background-image: url('{{ asset('/storage/categorybg/all.png')}}');"   >
             <div class="absolute inset-0 bg-black bg-opacity-50 rounded-lg group-hover:bg-opacity-40 transition"></div>
             <!-- Treść kategorii -->
             <a href="{{ route('category.index') }}" class="relative z-10 flex flex-col items-center justify-center text-white text-center h-full">

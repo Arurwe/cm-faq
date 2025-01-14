@@ -20,7 +20,7 @@ class AdminCategoryController extends Controller
     }
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -28,7 +28,26 @@ class AdminCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'file' => 'nullable|file|mimes:jpeg,png,jpg,gif,bmp|max:2048',
+        ]);
+    
+        // Ścieżka do zapisu pliku
+        $backgroundImagePath = null;
+    
+       
+        $backgroundImagePath =$request->file('categoryFile')->store('categorybg', 'public'); 
+        
+        $order = Category::max('order');
+        $order !== null ? $order++ : 1;
+
+        Category::create([
+            'name' => $request->name,
+            'background_image' => $backgroundImagePath ? Storage::url($backgroundImagePath) : null,
+            'order' => $order,
+        ]);
+        return redirect()->route('admin.categories.index')->with('success', 'Kategoria została dodana.');
     }
 
     /**
