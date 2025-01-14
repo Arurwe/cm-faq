@@ -17,8 +17,32 @@
         </a>
         
     </div>
+    <div>
+        <p>Ilość wszystkich FAQ: {{ $faqsCount}}</p>
+        <p>Ilość odwiedzin wszystkich FAQ: {{ $totalViews }}</p>
+        
+        <div class=" bg-white shadow-md rounded-lg max-w-72 ">
+            <h2>Najczęściej odwiedzane FAQ: </h2>
+        <table class=" table-auto max-w-50 border-collapse flex justify-center">
+            @foreach ($topFaqs as $topFaq)
+            
+            <tr class="hover:bg-gray-50">
+                <td class="px-4 py-2 border text-center">
+                    <a href="{{ route('faq.show', $topFaq)  }}" class="hover:text-blue-300  ">{{ $topFaq->title }}</a>
+                </td>
+                <td class="px-4 py-2 border text-center">{{ $topFaq->views }}</td>
+            
+            </tr>
+            
+            
+        @endforeach 
+        </table>
+    </div>
 
-    <p>Ilość wszystkich postów: {{ $faqsCount}}</p>
+    <div>
+    </div>
+    </div>
+    
 
 </div>
 @endsection

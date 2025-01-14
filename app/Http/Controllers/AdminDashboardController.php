@@ -8,6 +8,8 @@ class AdminDashboardController extends Controller
 {
     public function index(){
         $faqsCount = Faq::count();
-        return view('admin.dashboard', compact('faqsCount'));
+        $totalViews = Faq::sum('views');
+        $topFaqs = Faq::orderBy('views', 'desc')->take(5)->get();
+        return view('admin.dashboard', compact('faqsCount', 'totalViews', 'topFaqs'));
     }
 }

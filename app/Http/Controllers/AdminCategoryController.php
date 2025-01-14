@@ -99,8 +99,8 @@ class AdminCategoryController extends Controller
         }
 
       
-        $path = $request->file('background_image')->store('categories', 'public');
-        $category->update(['background_image' => $path]);
+        $path = $request->file('background_image')->store('categorybg', 'public');
+        $category->update(['background_image' => Storage::url($path)]);
 
         return redirect()->route('admin.categories.index')
             ->with('success', 'Zdjęcie zostało zaktualizowane.');

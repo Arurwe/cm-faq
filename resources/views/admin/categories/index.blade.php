@@ -45,7 +45,7 @@
             </thead>
             <tbody>
                 @foreach ($categories as $category)
-                <tr class="hover:bg-gray-50">
+                <tr class="hover:bg-gray-100">
                      <!-- Kolejność -->
                     <td class="px-4 py-2 border text-center">
                         <div class="flex items-center justify-center space-x-2">

@@ -106,7 +106,7 @@
                 Dodaj FAQ
             </button>
             <button id="tab-category" class="px-4 py-2 text-gray-500 hover:text-blue-500 focus:outline-none" onclick="switchTab('category')">
-                Dodaj Kategorię i Plik
+                Dodaj Faq jako Plik
             </button>
         </div>
     </div>
@@ -163,7 +163,7 @@
         </form>
     </div>
 
-    <!-- Zakładka: Dodaj Kategorię i Plik -->
+    <!-- Zakładka: Dodaj Faq jako Plik -->
     <div id="category-tab" class="tab-content hidden">
         <form action="{{ route('admin.faqs.store') }}" method="POST" enctype="multipart/form-data" class="bg-white shadow-md rounded-lg p-6">
             @csrf
@@ -183,6 +183,12 @@
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
+            </div>
+
+            <!-- Opis -->
+            <div class="mb-4">
+                <label for="category_id" class="block text-sm font-medium text-gray-700">Opis</label>
+                <input type="text" name="faqDescription" class="mt-1 p-2 w-full border rounded-lg">
             </div>
     
             <!-- Plik -->

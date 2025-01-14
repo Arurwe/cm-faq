@@ -71,7 +71,7 @@ class AdminFaqController extends Controller
         // Tworzenie FAQ
         $faqData = [
             'title' => $request->title,
-            'content' => $request->faqTypePost === "1" ? 'FILE' : $request->content,
+            'content' => $request->faqTypePost === "1" ? $request->faqDescription : $request->content,
             'category_id' => $request->category_id,
         ];
     
