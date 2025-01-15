@@ -12,18 +12,18 @@
         <a href="{{ route('admin.categories.index') }}" class="bg-green-500 text-white p-4 rounded-lg text-center shadow hover:bg-green-600">
             Zarządzaj kategoriami
         </a>
-        <a href="{{ route('admin.users.index') }}" class="bg-cyan-500 text-white p-4 rounded-lg text-center shadow hover:bg-cyan-600">
-            Zarządzaj Użytkownika
+        <a href="{{ route('admin.search-queries') }}" class="bg-cyan-500 text-white p-4 rounded-lg text-center shadow hover:bg-cyan-600">
+            Wyszukiwane frazy
         </a>
         
     </div>
     <div>
-        <p>Ilość wszystkich FAQ: {{ $faqsCount}}</p>
-        <p>Ilość odwiedzin wszystkich FAQ: {{ $totalViews }}</p>
+        <p class="bg-white shadow-md rounded-lg p-5 mt-2 max-w-64 font-semibold">Ilość wszystkich FAQ: {{ $faqsCount}}</p>
+        <p class="bg-white shadow-md rounded-lg p-5 mt-2 max-w-80 font-semibold">Ilość odwiedzin wszystkich FAQ: {{ $totalViews }}</p>
         
-        <div class=" bg-white shadow-md rounded-lg max-w-72 ">
-            <h2>Najczęściej odwiedzane FAQ: </h2>
-        <table class=" table-auto max-w-50 border-collapse flex justify-center">
+        <div class=" bg-white shadow-md rounded-lg max-w-80 font-semibold mt-2">
+            <h2 class="text-center">Najczęściej odwiedzane FAQ: </h2>
+        <table class=" table-auto  border-collapse flex justify-center mt-2 pb-4">
             @foreach ($topFaqs as $topFaq)
             
             <tr class="hover:bg-gray-50">

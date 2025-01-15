@@ -117,7 +117,7 @@
             @csrf
             <!-- Ukryte pole na treść z Trix -->
             <input type="hidden" name="content" id="content">
-            <input type="hidden" value="2" name="faqTypePost">
+            <input type="hidden" value="1" name="faqTypePost">
             <!-- Tytuł FAQ -->
             <div class="mb-4">
                 <label for="title" class="block text-sm font-medium text-gray-700">Tytuł</label>
@@ -167,7 +167,7 @@
     <div id="category-tab" class="tab-content hidden">
         <form action="{{ route('admin.faqs.store') }}" method="POST" enctype="multipart/form-data" class="bg-white shadow-md rounded-lg p-6">
             @csrf
-            <input type="hidden" value="1" name="faqTypePost">
+            <input type="hidden" value="3" name="faqTypePost">
             <!-- Tytuł FAQ -->
             <div class="mb-4">
                 <label for="title" class="block text-sm font-medium text-gray-700">Tytuł</label>

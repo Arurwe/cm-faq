@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Faq extends Model
 {
-    protected $fillable = ['title', 'content', 'category_id', 'views'];
+    protected $fillable = ['title', 'content', 'category_id', 'views', 'file_option'];
 
     public function category(){
         return $this->belongsTo(Category::class);
@@ -17,7 +17,9 @@ class Faq extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function files(){
-        return $this->hasMany(FaqFile::class);
+    public function files()
+    {
+        return $this->hasMany(FaqFile::class, 'faq_id');
     }
+    
 }

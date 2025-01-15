@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('faq_id');
             $table->string('file_path');
             $table->string('content_before')->nullable();
-            $table->integer('option')->default(1);
             $table->timestamps();
             $table->foreign('faq_id')->references('id')->on('faqs')->onDelete('cascade');
         });

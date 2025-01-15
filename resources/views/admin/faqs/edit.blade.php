@@ -4,9 +4,13 @@
 
 @section('content')
 <div class="container mx-auto px-4 py-6">
-    <h1 class="text-2xl font-bold mb-6">Dodaj nowe FAQ</h1>
+    <h1 class="text-2xl font-bold mb-6">Edytuj FAQ</h1>
 
-    <form action="{{ route('admin.faqs.store') }}" method="POST" enctype="multipart/form-data" class="bg-white shadow-md rounded-lg p-6">
+    @if($faq->file_option == 3)
+   <h1>UGANDA</h1>
+
+    @else
+    <form action="{{ route('admin.faqs.update' ,$faq->id) }}" method="POST" enctype="multipart/form-data" class="bg-white shadow-md rounded-lg p-6">
         @csrf
         @method('PUT')
         <!-- Ukryte pole na treść z Trix -->
@@ -36,7 +40,20 @@
             <label for="trix-editor" class="block text-sm font-medium text-gray-700">Treść</label>
             <trix-editor input="content" id="trix-editor" class="mt-1 h-min-20 p-2 w-full border rounded-lg" value="{{ old('content', $faq->content) }}" required></trix-editor>
         </div>
-
+<!-- Wyświetlanie załączonych plików -->
+<div class="mb-4">
+    <label class="block font-medium text-gray-700">Załączone pliki</label>
+    <ul class="list-disc pl-5">
+        @foreach ($option as $file)
+            <li>
+                <a href="{{ asset($file->file_path) }}" target="_blank" class="text-blue-500 hover:underline">
+                    {{ basename($file->file_path) }} <!-- Nazwa pliku -->
+                </a>
+                <input type="checkbox" name="remove_files[]" value="{{ $file->id }}"> Usuń
+            </li>
+        @endforeach
+    </ul>
+</div>
         <!-- Załączniki -->
         <div class="mb-4">
             <label for="files" class="block text-sm font-medium text-gray-700">Załącz pliki (opcjonalnie)</label>
@@ -52,4 +69,7 @@
         </div>
     </form>
 </div>
+    @endif
+
+    
 @endsection

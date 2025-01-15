@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Faq;
+use App\Models\Setting;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
             'is_admin' => '1',
         ]);
 
+      
 
         $this->call(CategorySeeder::class);
         $this->call(FaqSeeder::class);

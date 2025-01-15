@@ -45,23 +45,25 @@
      <h1 class="text-3xl font-bold mb-6">{{ $faq->title }}</h1>
  
      <!-- Treść FAQ -->
-     @if ($faq->files->where('option', 3)->isEmpty())
+     @if ($faq->file_option === 1)
          <div class="bg-white shadow-md rounded-lg p-6 mb-6">
              {!! $faq->content !!}
          </div>
+         @foreach ($faq->files as $file)
+         <div class="mb-4">
+            <p>{{ $file->content_before }} <a href="{{ asset('storage/' . $file->file_path) }}" 
+                download 
+                class="text-blue-500 hover:underline">Pobierz plik</a>
+            </p>
+        </div>
+         @endforeach
      @endif
  
      <!-- Pliki -->
-     @foreach ($faq->files as $file)
-         @if ($file->option === 1)
-             <!-- Opcja 1: Pobieranie pliku -->
-             <div class="mb-4">
-                 <p>{{ $file->content_before }} <a href="{{ asset('storage/' . $file->file_path) }}" 
-                     download 
-                     class="text-blue-500 hover:underline">Pobierz plik</a>
-                 </p>
-             </div>
-         @elseif ($file->option === 3)
+     
+         @if($faq->file_option === 3)
+         @foreach ($faq->files as $file)
+12212
              <!-- Opcja 3: Wyświetlanie pliku na stronie -->
              <div class="mb-4">
                  <p>{{ $file->content_before }}</p>
@@ -76,8 +78,9 @@
                     <iframe src="https://view.officeapps.live.com/op/embed.aspx?src={{ urlencode(asset('storage/' . $file->file_path)) }}" width="100%" height="100%" frameborder="0"> </iframe>
                  @endif
              </div>
+             @endforeach
          @endif
-     @endforeach
+  
  
      <!-- Informacje o kategorii -->
      <div class="flex items-center space-x-4 mb-4">

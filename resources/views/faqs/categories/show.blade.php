@@ -12,7 +12,7 @@
             <h2 class="text-lg font-semibold text-blue-500">
                 <a href="{{ route('faq.show', $faq) }}">{{ $faq->title }}</a>
             </h2>
-            <p class="text-gray-600">{{ Str::limit($faq->content, 250) }}</p>
+            <p class="text-gray-600">{{ Str::limit(strip_tags($faq->content, 250)) }}</p>
         </li>
         @empty
         <p>Brak pytań w tej kategorii.</p>

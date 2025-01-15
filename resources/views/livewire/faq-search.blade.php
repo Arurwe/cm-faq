@@ -47,7 +47,7 @@
                 
                         echo $excerpt;
                     } else {
-                        echo Str::limit(strip_tags($content), 100); // Upewnienie się, że nie ma tagów HTML
+                        echo Str::limit(strip_tags($content), 100);
                     }
                 @endphp
                 </p>

@@ -98,3 +98,5 @@ Route::patch('/admin/categories/{category}/update-order', [CategoryController::c
 
 Route::patch('/admin/categories/{category}/move-up', [AdminCategoryController::class, 'moveUp'])->name('admin.categories.moveUp');
 Route::patch('/admin/categories/{category}/move-down', [AdminCategoryController::class, 'moveDown'])->name('admin.categories.moveDown');
+
+

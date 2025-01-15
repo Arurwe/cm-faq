@@ -55,6 +55,20 @@
                         </div>
                     </th>
 
+                    <th class="px-4 py-2 border text-left text-gray-700">
+                        Wyświetlenia
+                        <div class="inline-block ml-2">
+                            <button onclick="sortTable('views', 'asc')" 
+                                    class="text-gray-500 hover:text-gray-700">
+                                ▲
+                            </button>
+                            <button onclick="sortTable('views', 'desc')" 
+                                    class="text-gray-500 hover:text-gray-700">
+                                ▼
+                            </button>
+                        </div>
+                    </th>
+
                     <!-- Opcje -->
                     <th class="px-4 py-2 border text-center text-gray-700">Opcje</th>
                 </tr>
@@ -64,12 +78,16 @@
                 <tr class="hover:bg-gray-50">
                     <!-- Tytuł FAQ -->
                     <td class="px-4 py-2 border">
-                        {{ $faq->title }}
+                        <a class="hover:text-blue-600" href="{{ route('faq.show', $faq->id) }}">{{ $faq->title }}</a>
                     </td>
 
                     <!-- Kategoria -->
                     <td class="px-4 py-2 border">
                         {{ $faq->category->name }}
+                    </td>
+
+                    <td class="px-4 py-2 border">
+                        {{ $faq->views }}
                     </td>
 
                     <!-- Opcje -->

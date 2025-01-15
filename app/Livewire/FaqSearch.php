@@ -17,6 +17,7 @@ class FaqSearch extends Component
             $this->faqs = Faq::query()
                 ->where('title', 'like', '%' . $this->query . '%')
                 ->orWhere('content', 'like', '%' . $this->query . '%')
+                ->limit(3)
                 ->get();
         } else {
             $this->faqs = [];
