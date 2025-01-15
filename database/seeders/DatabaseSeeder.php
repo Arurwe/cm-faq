@@ -26,7 +26,10 @@ class DatabaseSeeder extends Seeder
             'is_admin' => '1',
         ]);
 
-      
+        Setting::create([
+            'key' => 'categoryDisplayOption',
+            'value' => 'faqs_counts',
+        ]);
 
         $this->call(CategorySeeder::class);
         $this->call(FaqSeeder::class);

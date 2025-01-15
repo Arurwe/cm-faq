@@ -20,7 +20,7 @@ return new class extends Migration
                   ->constrained()
                   ->onDelete('set null');
             $table->integer('views')->default(0);
-            $table->integer('file_option')->default(1);
+            $table->integer('file_option')->default(0);
             $table->timestamps();
         });
     }

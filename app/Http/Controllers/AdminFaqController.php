@@ -32,7 +32,7 @@ class AdminFaqController extends Controller
             // Sortowanie po innych polach
             $queryBuilder->orderBy($sort, $direction);
         })
-        ->paginate(10); // Paginacja
+        ->paginate(15);
 
     return view('admin.faqs.index', compact('faqs'));
 }

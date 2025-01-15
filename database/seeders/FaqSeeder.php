@@ -12,16 +12,16 @@ class FaqSeeder extends Seeder
         $faker = Faker::create();
         // Przykładowe dane FAQ
         $data = [
-            ['title' => 'Domena', 'content' => 'Logowanie', 'category_id' => 1],
-            ['title' => 'Domena coakda', 'content' => 'sdas12321  21  a fd a a', 'category_id' => 1],
-            ['title' => 'Jakie są poczty', 'content' => 'afew211 o-j  02o fs s fs', 'category_id' => 2],
-            ['title' => 'Program do poczty', 'content' => 'sd32409hf9asa', 'category_id' => 2],
-            ['title' => 'Zapomniałem hasła', 'content' => '32409hf9', 'category_id' => 2],
-            ['title' => 'Logowanie przez VPN', 'content' => 'Logowanie tymi samymi poświadczeniami co normalnie lecz wybór tarczy', 'category_id' => 4],
-            ['title' => 'Połącz się z siecią UJCM_ADM', 'content' => 'Hasło domenowe', 'category_id' => 5],
-            ['title' => 'Połącz się z siecią UJ_Wifi', 'content' => 'Konto pocztowe @uj.edu.pl', 'category_id' => 5],
-            // ['title' => 'ad', 'content' =>  $faker->paragraph(20), 'category_id' => 3],
-            // ['title' => 'adasda', 'content' =>  $faker->paragraph(2), 'category_id' => 3]
+            ['title' => 'Jak zalogować się do komputera Domenowego', 'content' => $faker->paragraph(14), 'category_id' => 1],
+            ['title' => 'Czym jest domena', 'content' => $faker->paragraph(22), 'category_id' => 1],
+            ['title' => 'Poczta i te sprawy', 'content' => $faker->paragraph(30), 'category_id' => 2],
+            ['title' => 'Program do poczty', 'content' => $faker->paragraph(20), 'category_id' => 2],
+            ['title' => 'Zapomniałem hasła do poczty', 'content' => $faker->paragraph(20), 'category_id' => 2],
+            ['title' => 'Logowanie przez VPN', 'content' => $faker->paragraph(20), 'category_id' => 4],
+            ['title' => 'Połącz się z siecią UJCM_ADM', 'content' => $faker->paragraph(20), 'category_id' => 5],
+            ['title' => 'Połącz się z siecią UJ_Wifi', 'content' => $faker->paragraph(20), 'category_id' => 5],
+            ['title' => 'Aktualizacja program XXX', 'content' =>  $faker->paragraph(20), 'category_id' => 3],
+            ['title' => 'Zablokowane konto', 'content' =>  $faker->paragraph(2), 'category_id' => 1]
         ];
 
         foreach ($data as $item) {

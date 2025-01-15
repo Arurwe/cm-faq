@@ -12,7 +12,7 @@ class AdminCategoryController extends Controller
     public function index(Request $request)
     {
         $sort = $request->input('sort', 'order'); // Domyślnie sortuj po 'order'
-        $direction = $request->input('direction', 'asc'); // Domyślny kierunek 'asc'
+        $direction = $request->input('direction', 'asc'); 
     
         $categories = Category::orderBy($sort, $direction)->get();
     

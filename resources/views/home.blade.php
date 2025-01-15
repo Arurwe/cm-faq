@@ -16,7 +16,7 @@
         
         <!-- Sekcja kategorii -->
         <div class="mt-8">
-            <x-category-list :categories="$categories" style="homePage" />
+            <x-category-list :categories="$categories" style="homePage"/>
         </div>
 
 

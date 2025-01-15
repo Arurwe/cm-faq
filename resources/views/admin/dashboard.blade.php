@@ -38,9 +38,35 @@
         @endforeach 
         </table>
     </div>
+    
+        <div class="bg-white shadow-md rounded-lg max-w-lg font-semibold mt-2 pl-2 pb-2">
+            <form action="{{ route('admin.settings.update') }}" method="POST">
+                @csrf
+            <label class="block font-bold mb-2">Wybierz opcję domyślnego wyświetlania <br />Listy kategorii w MainPage</label>
+            <div class="space-y-2">
+                <label class="inline-flex items-center">
+                    <input type="radio" name="categoryDisplayOption" value="order" class="form-radio text-blue-500"
+                    {{ $currentOption === 'order' ? 'checked' : '' }}>
+                    <span class="ml-2">Według ułożenia</span>
+                </label>
+                <label class="inline-flex items-center">
+                    <input type="radio" name="categoryDisplayOption" value="faq_count" class="form-radio text-blue-500"
+                    {{ $currentOption === 'faq_count' ? 'checked' : '' }}>
+                    <span class="ml-2">Ilość postów</span>
+                </label>
+                <label class="inline-flex items-center">
+                    <input type="radio" name="categoryDisplayOption" value="alphabetic" class="form-radio text-blue-500"
+                    {{ $currentOption === 'alphabetic' ? 'checked' : '' }}>
+                    <span class="ml-2">Alfabetycznie</span>
+                </label>
+                <br />
+            <button class=" bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" type="submit">Zapisz</button>
+            </div>
 
-    <div>
-    </div>
+        </form>
+        
+        
+        </div>
     </div>
     
 
